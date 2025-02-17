@@ -51,22 +51,22 @@
     <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow" style="width: 350px;">
             <h3 class="text-center mb-3">Sign Up</h3>
-            <form>
+            <form action="action/action_form.php" method="post">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" required>
+                    <input type="text"name="username" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" required>
+                    <input type="email" name="email" class="form-control" id="email" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" required>
+                    <input type="password" name="password" class="form-control" id="password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="confirm-password" class="form-label">Re-enter Password</label>
-                    <input type="password" class="form-control" id="confirm-password" required>
+                    <label for="re_password" class="form-label">Re-enter Password</label>
+                    <input type="password" name="re_password" class="form-control" id="re_password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Sign Up</button>
             </form>

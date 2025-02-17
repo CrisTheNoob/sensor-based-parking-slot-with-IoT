@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    $_SESSION['error'] = "You must log in first.";
+    header("Location: index.php");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
