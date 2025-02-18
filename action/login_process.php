@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate input fields
     if (empty($username) || empty($password)) {
         $_SESSION['error'] = "Please fill in all fields.";
-        header("Location: login.php");
+        header("Location: ../index.php");
         exit();
     }
 
@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['username'] = $user['username'];
             $_SESSION['logged_in'] = true;
 
-            // Redirect to dashboard or homepage
-            header("Location: dashboard.php");
+            // Redirect to dashboard
+            header("Location: ../dashboard.php");
             exit();
         } else {
             $_SESSION['error'] = "Invalid password.";
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect back to login page with error message
-    header("Location: ../dashboard.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
