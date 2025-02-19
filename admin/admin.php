@@ -36,19 +36,57 @@
     <div class="container-fluid d-flex justify-content-center align-items-center vh-100">
         <div class="card p-4 shadow-lg rounded-4" style="width: 350px;">
             <h3 class="text-center mb-3">Admin Login</h3>
-            <form>
+            <form id="loginForm">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
+
+                <!-- Preloader (Initially Hidden) -->
+                <div id="preloader" style="display: none; text-align: center; margin-top: 10px;">
+                    <div class="spinner-border text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="text-light mt-2">Logging in, please wait...</p>
+                </div>
             </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", function(event) {
+          event.preventDefault(); // Prevent form from refreshing the page
+
+          let formData = new FormData(this);
+
+          fetch("admin_process/login.php", {
+              method: "POST",
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.status === "success") {
+                  // Show preloader
+                  document.getElementById("preloader").style.display = "block";
+
+                  // Hide login button
+                  document.querySelector("button[type='submit']").style.display = "none";
+
+                  // Redirect after 2 seconds
+                  setTimeout(() => {
+                      window.location.href = "admin_dashboard.php";
+                  }, 2000);
+              } else {
+                  alert(data.message); // Show error message
+              }
+          })
+          .catch(error => console.error("Error:", error));
+      });
+      </script>
   </body>
 </html>

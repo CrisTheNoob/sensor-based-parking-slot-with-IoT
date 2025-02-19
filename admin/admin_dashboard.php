@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: admin.php");
+    exit();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,14 +73,7 @@
 
     <div class="wrapper">
         <!-- Sidebar -->
-        <div class="sidebar">
-            <h4>Admin Panel</h4>
-            <a href="#">Dashboard</a>
-            <a href="#">Users</a>
-            <a href="#">Settings</a>
-            <a href="#">Reports</a>
-            <a href="#">Logout</a>
-        </div>
+        <?php include 'header.php'; ?>
 
         <!-- Main Content -->
         <div class="main-content">
